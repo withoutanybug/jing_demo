@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | AD MAGAZINE</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">AD MAGAZINE</a>
+      <nav class="site-nav">
+        <a href="magazine-window.html">杂志橱窗 Magazine Window</a>
+        <a href="data-service.html">Data Service</a>
+        <a href="contact.html">Contact</a>
+        <a href="news.html">News</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 页面标题区 -->
+    <section class="page-header">
+      <div class="container">
+        <h1>在算法之外，给你的品牌一个家。</h1>
+        <p>不用再跟程序员解释 "高级感" 是什么意思了。</p>
+      </div>
+    </section>
+
+    <!-- 联系表单 -->
+    <section class="section">
+      <div class="container">
+        <div class="contact-layout">
+          <div class="contact-info-block">
+            <h2>联系方式</h2>
+            <p>邮箱：<a href="mailto:569122844@qq.com">569122844@qq.com</a></p>
+            <p>微信：AD_Magazine_Studio（示例）</p>
+            <p>地址：上海市静安区（示例）</p>
+            <p>工作时间：周一至周五 10:00–19:00</p>
+          </div>
+
+          <form class="contact-form" id="contact-form" action="#" method="post">
+            <div class="form-row">
+              <label for="name">姓名</label>
+              <input type="text" id="name" name="name" placeholder="你的名字" required>
+            </div>
+            <div class="form-row">
+              <label for="email">邮箱</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-row">
+              <label for="project-type">项目类型</label>
+              <select id="project-type" name="project-type">
+                <option value="独立站设计">独立站设计</option>
+                <option value="数据洞察服务">数据洞察服务</option>
+                <option value="品牌内容策划">品牌内容策划</option>
+                <option value="其他">其他</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="message">项目描述</label>
+              <textarea id="message" name="message" rows="6" placeholder="简单描述你的项目需求、预算和期望时间…" required></textarea>
+            </div>
+            <button type="submit">发送咨询</button>
+          </form>
+        </div>
+        <p class="contact-closing">0-1 独立站全案搭建・懂技术 更懂审美</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 AD MAGAZINE. 图片来源：Architectural Digest USA | 仅作展示，请勿商用</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Service | AD MAGAZINE</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">AD MAGAZINE</a>
+      <nav class="site-nav">
+        <a href="magazine-window.html">杂志橱窗 Magazine Window</a>
+        <a href="data-service.html">Data Service</a>
+        <a href="contact.html">Contact</a>
+        <a href="news.html">News</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="about-section section">
+      <div class="container">
+        <!-- 品牌方数据洞察仪表盘 -->
+        <div class="insight-dashboard">
+          <!-- 顶部全局标题 -->
+          <div class="insight-dashboard__hero">
+            <h1>你的商业版图能伸展到哪里？<br>你的品牌会吸引怎样的顾客？</h1>
+            <p>全链路顾客行为分析，让你更了解你的用户，优化品牌策略</p>
+          </div>
+
+          <!-- 模块1：今日流量速览 -->
+          <section class="insight-dashboard__section">
+            <h2 class="insight-dashboard__section-title">今日流量速览（演示）</h2>
+            <div class="insight-dashboard__rings">
+              <div class="insight-dashboard__ring">
+                <svg viewBox="0 0 120 120">
+                  <circle class="insight-dashboard__ring-bg" cx="60" cy="60" r="52"/>
+                  <circle class="insight-dashboard__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="222.2 104.5"/>
+                </svg>
+                <div class="insight-dashboard__ring-center">
+                  <p class="insight-dashboard__ring-value">1,247</p>
+                  <p class="insight-dashboard__ring-label">今日访问</p>
+                </div>
+                <p class="insight-dashboard__ring-mom">环比 +12.5%</p>
+              </div>
+              <div class="insight-dashboard__ring">
+                <svg viewBox="0 0 120 120">
+                  <circle class="insight-dashboard__ring-bg" cx="60" cy="60" r="52"/>
+                  <circle class="insight-dashboard__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="267.9 58.8"/>
+                </svg>
+                <div class="insight-dashboard__ring-center">
+                  <p class="insight-dashboard__ring-value">2'34"</p>
+                  <p class="insight-dashboard__ring-label">平均停留</p>
+                </div>
+                <p class="insight-dashboard__ring-mom">环比 +5.2%</p>
+              </div>
+              <div class="insight-dashboard__ring">
+                <svg viewBox="0 0 120 120">
+                  <circle class="insight-dashboard__ring-bg" cx="60" cy="60" r="52"/>
+                  <circle class="insight-dashboard__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="223.2 104.5"/>
+                </svg>
+                <div class="insight-dashboard__ring-center">
+                  <p class="insight-dashboard__ring-value">68.3%</p>
+                  <p class="insight-dashboard__ring-label">互动率</p>
+                </div>
+                <p class="insight-dashboard__ring-mom">环比 +3.1%</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 模块2：用户兴趣分布 -->
+          <section class="insight-dashboard__section">
+            <h2 class="insight-dashboard__section-title">用户最爱看哪些页面（演示）</h2>
+            <p class="insight-dashboard__section-subtitle">悬停或点击扇形查看具体数据</p>
+            <div class="insight-dashboard__pie-layout">
+              <div class="insight-dashboard__pie" id="interest-pie"></div>
+              <ul class="insight-dashboard__legend" id="interest-legend">
+                <li data-label="Works" data-percent="45" data-count="5661" data-color="#C4A77D"><span class="insight-dashboard__dot" style="background-color:#C4A77D;"></span>Works 45% · 5,661 次</li>
+                <li data-label="Data Service" data-percent="22" data-count="2768" data-color="#888"><span class="insight-dashboard__dot" style="background-color:#888;"></span>Data Service 22% · 2,768 次</li>
+                <li data-label="Contact" data-percent="18" data-count="2264" data-color="#bbb"><span class="insight-dashboard__dot" style="background-color:#bbb;"></span>Contact 18% · 2,264 次</li>
+                <li data-label="News" data-percent="15" data-count="1887" data-color="#ddd"><span class="insight-dashboard__dot" style="background-color:#ddd;"></span>News 15% · 1,887 次</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 模块3：热门内容排行（图片云） -->
+          <section class="insight-dashboard__section">
+            <h2 class="insight-dashboard__section-title">哪张图最吸引人（演示）</h2>
+            <p class="insight-dashboard__section-subtitle">悬停或点击图片查看热度数据，图片大小代表受欢迎程度</p>
+            <div class="insight-dashboard__cloud" id="attraction-cloud"></div>
+            <div class="insight-dashboard__cloud-detail" id="cloud-detail">悬停或点击图片查看详细数据</div>
+          </section>
+
+          <!-- 模块4：内容完读漏斗 -->
+          <section class="insight-dashboard__section">
+            <h2 class="insight-dashboard__section-title">用户看到哪一步就离开了（演示）</h2>
+            <div class="insight-dashboard__funnel">
+              <div class="insight-dashboard__funnel-row">
+                <div class="insight-dashboard__funnel-bar" style="--width:100%; --color:#C4A77D;">
+                  <span>100%</span>
+                </div>
+                <div class="insight-dashboard__funnel-info">
+                  <strong>12,580 人</strong>
+                  <span>进入网站</span>
+                </div>
+              </div>
+              <div class="insight-dashboard__funnel-row">
+                <div class="insight-dashboard__funnel-bar" style="--width:80%; --color:#c9ae86;">
+                  <span>75%</span>
+                </div>
+                <div class="insight-dashboard__funnel-info">
+                  <strong>9,435 人</strong>
+                  <span>浏览图片</span>
+                </div>
+              </div>
+              <div class="insight-dashboard__funnel-row">
+                <div class="insight-dashboard__funnel-bar" style="--width:60%; --color:#d0b99a;">
+                  <span>50%</span>
+                </div>
+                <div class="insight-dashboard__funnel-info">
+                  <strong>6,290 人</strong>
+                  <span>滚动阅读</span>
+                </div>
+              </div>
+              <div class="insight-dashboard__funnel-row">
+                <div class="insight-dashboard__funnel-bar" style="--width:40%; --color:#d7c4ae;">
+                  <span>25%</span>
+                </div>
+                <div class="insight-dashboard__funnel-info">
+                  <strong>3,145 人</strong>
+                  <span>查看详情</span>
+                </div>
+              </div>
+              <div class="insight-dashboard__funnel-row">
+                <div class="insight-dashboard__funnel-bar" style="--width:20%; --color:#e0d1c0;">
+                  <span>5%</span>
+                </div>
+                <div class="insight-dashboard__funnel-info">
+                  <strong>629 人</strong>
+                  <span>提交联系</span>
+                </div>
+              </div>
+              <div class="insight-dashboard__funnel-row">
+                <div class="insight-dashboard__funnel-bar" style="--width:8%; --color:#e8ddd0;">
+                  <span>0.2%</span>
+                </div>
+                <div class="insight-dashboard__funnel-info">
+                  <strong>20 人</strong>
+                  <span>提交订单</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 模块5：用户偏好雷达 -->
+          <section class="insight-dashboard__section">
+            <h2 class="insight-dashboard__section-title">用户喜欢什么风格（演示）</h2>
+            <div class="insight-dashboard__radar">
+              <svg viewBox="0 0 300 300">
+                <!-- 背景网格 -->
+                <g class="insight-dashboard__radar-grid">
+                  <polygon points="150,30 246,100 218,226 82,226 54,100"/>
+                  <polygon points="150,60 222,112 200,196 100,196 78,112"/>
+                  <polygon points="150,90 198,124 182,166 118,166 102,124"/>
+                  <polygon points="150,120 174,136 166,166 134,166 126,136"/>
+                  <line x1="150" y1="150" x2="150" y2="30"/>
+                  <line x1="150" y1="150" x2="246" y2="100"/>
+                  <line x1="150" y1="150" x2="218" y2="226"/>
+                  <line x1="150" y1="150" x2="82" y2="226"/>
+                  <line x1="150" y1="150" x2="54" y2="100"/>
+                </g>
+                <!-- 数据多边形 -->
+                <polygon class="insight-dashboard__radar-shape" points="150,43.6 220.8,105.6 202.4,167 132.2,193 97.6,119.5"/>
+                <!-- 顶点 -->
+                <circle cx="150" cy="43.6" r="3" fill="#C4A77D"/>
+                <circle cx="220.8" cy="105.6" r="3" fill="#C4A77D"/>
+                <circle cx="202.4" cy="167" r="3" fill="#C4A77D"/>
+                <circle cx="132.2" cy="193" r="3" fill="#C4A77D"/>
+                <circle cx="97.6" cy="119.5" r="3" fill="#C4A77D"/>
+                <!-- 标签 -->
+                <text x="150" y="18" text-anchor="middle" class="insight-dashboard__radar-label">室内设计 92</text>
+                <text x="260" y="95" text-anchor="start" class="insight-dashboard__radar-label">建筑 78</text>
+                <text x="230" y="245" text-anchor="start" class="insight-dashboard__radar-label">家具 65</text>
+                <text x="70" y="245" text-anchor="end" class="insight-dashboard__radar-label">生活方式 45</text>
+                <text x="40" y="95" text-anchor="end" class="insight-dashboard__radar-label">广告灵感 55</text>
+              </svg>
+            </div>
+          </section>
+
+          <!-- 模块6：转化旅程 -->
+          <section class="insight-dashboard__section">
+            <h2 class="insight-dashboard__section-title">从访问到联系，每一步多少人（演示）</h2>
+            <div class="insight-dashboard__journey">
+              <div class="insight-dashboard__journey-step">
+                <div class="insight-dashboard__journey-box">访问首页</div>
+                <p class="insight-dashboard__journey-count">12,580 人</p>
+                <p class="insight-dashboard__journey-rate">100%</p>
+              </div>
+              <span class="insight-dashboard__journey-arrow">→</span>
+              <div class="insight-dashboard__journey-step">
+                <div class="insight-dashboard__journey-box">浏览杂志</div>
+                <p class="insight-dashboard__journey-count">8,554 人</p>
+                <p class="insight-dashboard__journey-rate">68%</p>
+              </div>
+              <span class="insight-dashboard__journey-arrow">→</span>
+              <div class="insight-dashboard__journey-step">
+                <div class="insight-dashboard__journey-box">查看详情</div>
+                <p class="insight-dashboard__journey-count">4,403 人</p>
+                <p class="insight-dashboard__journey-rate">35%</p>
+              </div>
+              <span class="insight-dashboard__journey-arrow">→</span>
+              <div class="insight-dashboard__journey-step">
+                <div class="insight-dashboard__journey-box">点击联系</div>
+                <p class="insight-dashboard__journey-count">1,510 人</p>
+                <p class="insight-dashboard__journey-rate">12%</p>
+              </div>
+              <span class="insight-dashboard__journey-arrow">→</span>
+              <div class="insight-dashboard__journey-step">
+                <div class="insight-dashboard__journey-box">提交表单</div>
+                <p class="insight-dashboard__journey-count">604 人</p>
+                <p class="insight-dashboard__journey-rate">4.8%</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 模块7：全球访问分布地图 -->
+          <section class="insight-dashboard__section">
+            <h2 class="insight-dashboard__section-title">读者从哪些城市来（演示）</h2>
+            <p class="insight-dashboard__section-subtitle">地域分布洞察，指导内容本地化策略</p>
+            <div class="insight-dashboard__map" id="insight-map"></div>
+
+            <div class="insight-dashboard__map-chart">
+              <div class="insight-dashboard__map-pie" id="insight-map-pie"></div>
+              <ul class="insight-dashboard__map-legend" id="insight-map-legend"></ul>
+            </div>
+
+            <p class="insight-dashboard__map-note">* 演示数据 · 真实项目可接入 GA4 / 百度统计获取实时地域分布</p>
+          </section>
+
+          <!-- 模块8：AI 洞察 -->
+          <section class="insight-dashboard__section">
+            <h2 class="insight-dashboard__section-title">AI 数据洞察（演示）</h2>
+            <p class="insight-dashboard__section-subtitle">基于地域分布与内容偏好的智能分析</p>
+            <div class="insight-dashboard__ai" id="insight-ai">
+              <p class="insight-dashboard__ai-hint">输入豆包 API Key 即可调用真实模型；留空则显示基于当前数据的模拟分析。<br>（通过本地服务器访问时，也可在服务器环境变量中配置 DOUBAO_API_KEY）</p>
+              <div class="insight-dashboard__ai-config">
+                <label for="ai-api-key">豆包 API Key</label>
+                <input type="password" id="ai-api-key" placeholder="sk-...">
+                <label for="ai-model">模型名（可选）</label>
+                <input type="text" id="ai-model" placeholder="doubao-lite-4k" value="doubao-lite-4k">
+              </div>
+              <button class="insight-dashboard__ai-button" id="insight-ai-btn" type="button">生成 AI 分析</button>
+              <div class="insight-dashboard__ai-output" id="insight-ai-output"></div>
+            </div>
+          </section>
+
+          <!-- 底部声明 -->
+          <p class="insight-dashboard__footer">以上所有图表数据均为演示，真实项目可基于业务目标配置完整的数据分析方案。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- iOS 风格悬浮提示 -->
+  <div id="ios-tooltip" class="ios-tooltip" role="tooltip">
+    <span class="ios-tooltip-title"></span>
+    <span class="ios-tooltip-value"></span>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 AD MAGAZINE. 图片来源：Architectural Digest USA | 仅作展示，请勿商用</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <script>
+    // 全局 iOS 风格悬浮提示
+    (function () {
+      const tooltip = document.getElementById('ios-tooltip');
+      if (!tooltip) return;
+
+      const titleEl = tooltip.querySelector('.ios-tooltip-title');
+      const valueEl = tooltip.querySelector('.ios-tooltip-value');
+
+      function position(x, y) {
+        // 强制重排以获取可见后的准确尺寸
+        void tooltip.offsetWidth;
+        const rect = tooltip.getBoundingClientRect();
+        let left = x + 16;
+        let top = y + 16;
+        if (left + rect.width > window.innerWidth - 16) left = x - rect.width - 16;
+        if (top + rect.height > window.innerHeight - 16) top = y - rect.height - 16;
+        if (left < 16) left = 16;
+        if (top < 16) top = 16;
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = top + 'px';
+      }
+
+      window.iosTooltip = {
+        show: function (title, value, x, y) {
+          titleEl.textContent = title;
+          valueEl.textContent = value;
+          tooltip.classList.add('visible');
+          position(x, y);
+        },
+        move: function (x, y) {
+          if (tooltip.classList.contains('visible')) position(x, y);
+        },
+        hide: function () {
+          tooltip.classList.remove('visible');
+        }
+      };
+    })();
+
+    (function () {
+      // 只有 data-service.html 包含 #insight-map 时才初始化
+      const mapEl = document.getElementById('insight-map');
+      if (!mapEl || typeof L === 'undefined') return;
+
+      // 使用 CartoDB Positron 浅色瓦片，风格与网站白底黑字一致
+      const map = L.map('insight-map', {
+        center: [30, 10],
+        zoom: 2,
+        zoomControl: true,
+        scrollWheelZoom: false,
+        attributionControl: true
+      });
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }).addTo(map);
+
+      // 城市数据
+      const cities = [
+        { name: '纽约', lat: 40.7128, lng: -74.0060, count: 1240 },
+        { name: '伦敦', lat: 51.5074, lng: -0.1278, count: 890 },
+        { name: '东京', lat: 35.6762, lng: 139.6503, count: 756 },
+        { name: '上海', lat: 31.2304, lng: 121.4737, count: 542 },
+        { name: '悉尼', lat: -33.8688, lng: 151.2093, count: 418 }
+      ];
+
+      const colors = ['#C4A77D', '#a89f91', '#8c8c8c', '#b0b0b0', '#d4d4d4'];
+      const totalCount = cities.reduce(function (sum, c) { return sum + c.count; }, 0);
+
+      // 根据访问量计算圆点大小（半径 6-18）
+      const minCount = Math.min.apply(null, cities.map(function (c) { return c.count; }));
+      const maxCount = Math.max.apply(null, cities.map(function (c) { return c.count; }));
+
+      cities.forEach(function (city, index) {
+        const ratio = (city.count - minCount) / (maxCount - minCount);
+        const radius = 6 + ratio * 12;
+        const percent = ((city.count / totalCount) * 100).toFixed(1);
+        const marker = L.circleMarker([city.lat, city.lng], {
+          radius: radius,
+          fillColor: colors[index % colors.length],
+          color: colors[index % colors.length],
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.85
+        }).addTo(map);
+
+        marker.on('mouseover', function (e) {
+          if (window.iosTooltip) {
+            window.iosTooltip.show(city.name, city.count + ' 次访问 · 占比 ' + percent + '%', e.originalEvent.clientX, e.originalEvent.clientY);
+          }
+        });
+        marker.on('mousemove', function (e) {
+          if (window.iosTooltip) window.iosTooltip.move(e.originalEvent.clientX, e.originalEvent.clientY);
+        });
+        marker.on('mouseout', function () {
+          if (window.iosTooltip) window.iosTooltip.hide();
+        });
+        marker.on('click', function (e) {
+          if (window.iosTooltip) {
+            window.iosTooltip.show(city.name, city.count + ' 次访问 · 占比 ' + percent + '%', e.originalEvent.clientX, e.originalEvent.clientY);
+          }
+        });
+      });
+
+      // 渲染城市访问量饼图（ECharts）
+      function renderMapPie() {
+        const pieEl = document.getElementById('insight-map-pie');
+        const legendEl = document.getElementById('insight-map-legend');
+        if (!pieEl || !legendEl || typeof echarts === 'undefined') return;
+
+        const data = cities.map(function (city, index) {
+          const percent = parseFloat(((city.count / totalCount) * 100).toFixed(1));
+          return {
+            value: city.count,
+            name: city.name,
+            percent: percent,
+            itemStyle: { color: colors[index % colors.length] }
+          };
+        });
+
+        const chart = echarts.init(pieEl);
+        chart.setOption({
+          tooltip: { show: false },
+          series: [{
+            type: 'pie',
+            radius: ['0%', '92%'],
+            center: ['50%', '50%'],
+            data: data,
+            animationType: 'scale',
+            animationEasing: 'elasticOut',
+            animationDelay: function (idx) { return Math.random() * 200; },
+            label: { show: false },
+            labelLine: { show: false },
+            emphasis: {
+              scale: true,
+              scaleSize: 10,
+              itemStyle: {
+                shadowBlur: 20,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.15)'
+              }
+            },
+            itemStyle: {
+              borderColor: '#fff',
+              borderWidth: 2
+            }
+          }]
+        });
+
+        legendEl.innerHTML = data.map(function (item, index) {
+          return '<li data-name="' + item.name + '" data-count="' + item.value + '" data-percent="' + item.percent + '" data-index="' + index + '"><span class="insight-dashboard__map-dot" style="background-color:' + colors[index % colors.length] + ';"></span>' + item.name + ' ' + item.percent + '% · ' + item.value + ' 次</li>';
+        }).join('');
+
+        const legendItems = Array.from(legendEl.querySelectorAll('li'));
+
+        function clearActive() {
+          legendItems.forEach(function (item) { item.classList.remove('active'); });
+          chart.dispatchAction({ type: 'downplay', seriesIndex: 0 });
+        }
+
+        function activate(index) {
+          clearActive();
+          const item = legendItems[index];
+          if (item) item.classList.add('active');
+          chart.dispatchAction({ type: 'highlight', seriesIndex: 0, dataIndex: index });
+        }
+
+        function showTooltip(params, e) {
+          if (!window.iosTooltip) return;
+          const count = parseInt(params.value, 10).toLocaleString();
+          const percent = data[params.dataIndex].percent;
+          window.iosTooltip.show(params.name, count + ' 次访问 · 占比 ' + percent + '%', e.clientX, e.clientY);
+        }
+
+        chart.on('mouseover', function (params, e) {
+          activate(params.dataIndex);
+          showTooltip(params, e.event);
+        });
+        chart.on('mousemove', function (params, e) {
+          if (window.iosTooltip) window.iosTooltip.move(e.event.clientX, e.event.clientY);
+        });
+        chart.on('mouseout', function () {
+          clearActive();
+          if (window.iosTooltip) window.iosTooltip.hide();
+        });
+        chart.on('click', function (params, e) {
+          activate(params.dataIndex);
+          showTooltip(params, e.event);
+        });
+
+        legendItems.forEach(function (item, index) {
+          function onEnter(e) {
+            activate(index);
+            const name = item.getAttribute('data-name');
+            const percent = item.getAttribute('data-percent');
+            const count = item.getAttribute('data-count');
+            if (window.iosTooltip) {
+              window.iosTooltip.show(name, count + ' 次访问 · 占比 ' + percent + '%', e.clientX, e.clientY);
+            }
+          }
+          item.addEventListener('mouseenter', onEnter);
+          item.addEventListener('mousemove', function (e) {
+            if (window.iosTooltip) window.iosTooltip.move(e.clientX, e.clientY);
+          });
+          item.addEventListener('mouseleave', function () {
+            clearActive();
+            if (window.iosTooltip) window.iosTooltip.hide();
+          });
+          item.addEventListener('click', onEnter);
+        });
+
+        window.addEventListener('resize', function () {
+          chart.resize();
+        });
+      }
+      renderMapPie();
+
+      // "您在这里"标记：默认上海，若浏览器支持地理定位则使用真实位置
+      const youIcon = L.divIcon({
+        className: 'insight-map-you-marker',
+        html: '<div class="insight-map-you-dot"></div><div class="insight-map-you-pulse"></div>',
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
+      });
+
+      const youMarker = L.marker([31.2304, 121.4737], { icon: youIcon })
+        .addTo(map)
+        .bindPopup('您在这里 · 上海');
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (pos) {
+          const lat = pos.coords.latitude;
+          const lng = pos.coords.longitude;
+          youMarker.setLatLng([lat, lng]).setPopupContent('您在这里 · 当前位置');
+        }, function () {
+          // 定位失败时保持默认上海位置
+        });
+      }
+    })();
+
+    // 模块2：用户兴趣分布饼图交互（ECharts）
+    (function () {
+      const pieEl = document.getElementById('interest-pie');
+      const legend = document.getElementById('interest-legend');
+      if (!pieEl || !legend || typeof echarts === 'undefined') return;
+
+      const data = [
+        { value: 5661, name: 'Works', percent: 45, itemStyle: { color: '#C4A77D' } },
+        { value: 2768, name: 'Data Service', percent: 22, itemStyle: { color: '#888' } },
+        { value: 2264, name: 'Contact', percent: 18, itemStyle: { color: '#bbb' } },
+        { value: 1887, name: 'News', percent: 15, itemStyle: { color: '#ddd' } }
+      ];
+
+      const chart = echarts.init(pieEl);
+      chart.setOption({
+        tooltip: { show: false },
+        series: [{
+          type: 'pie',
+          radius: ['0%', '92%'],
+          center: ['50%', '50%'],
+          data: data,
+          animationType: 'scale',
+          animationEasing: 'elasticOut',
+          animationDelay: function (idx) { return Math.random() * 200; },
+          label: { show: false },
+          labelLine: { show: false },
+          emphasis: {
+            scale: true,
+            scaleSize: 10,
+            itemStyle: {
+              shadowBlur: 20,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.15)'
+            }
+          },
+          itemStyle: {
+            borderColor: '#fff',
+            borderWidth: 2
+          }
+        }]
+      });
+
+      const legendItems = Array.from(legend.querySelectorAll('li'));
+
+      function clearActive() {
+        legendItems.forEach(function (item) { item.classList.remove('active'); });
+        chart.dispatchAction({ type: 'downplay', seriesIndex: 0 });
+      }
+
+      function activate(index) {
+        clearActive();
+        const item = legendItems[index];
+        if (item) item.classList.add('active');
+        chart.dispatchAction({ type: 'highlight', seriesIndex: 0, dataIndex: index });
+      }
+
+      function showTooltip(params, e) {
+        if (!window.iosTooltip) return;
+        const count = parseInt(params.value, 10).toLocaleString();
+        const percent = data[params.dataIndex].percent;
+        window.iosTooltip.show(params.name, percent + '% · ' + count + ' 次访问', e.clientX, e.clientY);
+      }
+
+      chart.on('mouseover', function (params, e) {
+        activate(params.dataIndex);
+        showTooltip(params, e.event);
+      });
+      chart.on('mousemove', function (params, e) {
+        if (window.iosTooltip) window.iosTooltip.move(e.event.clientX, e.event.clientY);
+      });
+      chart.on('mouseout', function () {
+        clearActive();
+        if (window.iosTooltip) window.iosTooltip.hide();
+      });
+      chart.on('click', function (params, e) {
+        activate(params.dataIndex);
+        showTooltip(params, e.event);
+      });
+
+      legendItems.forEach(function (item, index) {
+        function onEnter(e) {
+          activate(index);
+          const label = item.getAttribute('data-label');
+          const percent = item.getAttribute('data-percent');
+          const count = item.getAttribute('data-count');
+          if (window.iosTooltip) {
+            window.iosTooltip.show(label, percent + '% · ' + parseInt(count, 10).toLocaleString() + ' 次访问', e.clientX, e.clientY);
+          }
+        }
+        item.addEventListener('mouseenter', onEnter);
+        item.addEventListener('mousemove', function (e) {
+          if (window.iosTooltip) window.iosTooltip.move(e.clientX, e.clientY);
+        });
+        item.addEventListener('mouseleave', function () {
+          clearActive();
+          if (window.iosTooltip) window.iosTooltip.hide();
+        });
+        item.addEventListener('click', onEnter);
+      });
+
+      window.addEventListener('resize', function () {
+        chart.resize();
+      });
+    })();
+
+    // 模块3：热门内容排行（图片词云）
+    (function () {
+      const container = document.getElementById('attraction-cloud');
+      const detail = document.getElementById('cloud-detail');
+      if (!container) return;
+
+      const cloudData = [
+        { category: 'interior', title: '现代客厅', file: 'imgs/interior/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_120.png', count: 1240 },
+        { category: 'interior', title: '主卧室', file: 'imgs/interior/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_121.png', count: 1080 },
+        { category: 'architecture', title: '海滨别墅', file: 'imgs/architecture/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_126.png', count: 1020 },
+        { category: 'interior', title: '餐厅空间', file: 'imgs/interior/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_122.png', count: 980 },
+        { category: 'architecture', title: '城市公寓', file: 'imgs/architecture/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_146.png', count: 880 },
+        { category: 'interior', title: '开放式厨房', file: 'imgs/interior/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_123.png', count: 890 },
+        { category: 'interior', title: '浴室设计', file: 'imgs/interior/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_128.png', count: 820 },
+        { category: 'architecture', title: '现代建筑', file: 'imgs/architecture/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_18.png', count: 720 },
+        { category: 'interior', title: '书房角落', file: 'imgs/interior/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_129.png', count: 760 },
+        { category: 'interior', title: '入口门厅', file: 'imgs/interior/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_130.png', count: 710 },
+        { category: 'architecture', title: '山间小屋', file: 'imgs/architecture/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_17.png', count: 610 },
+        { category: 'furniture', title: '经典单椅', file: 'imgs/furniture/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_124.png', count: 570 },
+        { category: 'interior', title: '儿童房', file: 'imgs/interior/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_132.png', count: 650 },
+        { category: 'furniture', title: '手工茶几', file: 'imgs/furniture/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_125.png', count: 520 },
+        { category: 'interior', title: '露台花园', file: 'imgs/interior/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_134.png', count: 590 },
+        { category: 'ads', title: '品牌广告', file: 'imgs/ads/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_2.png', count: 480 },
+        { category: 'furniture', title: '沙发组合', file: 'imgs/furniture/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_74.png', count: 470 },
+        { category: 'interior', title: '衣帽间', file: 'imgs/interior/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_135.png', count: 540 },
+        { category: 'lifestyle', title: '午后阅读', file: 'imgs/lifestyle/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_127.png', count: 430 },
+        { category: 'ads', title: '产品广告', file: 'imgs/ads/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_3.png', count: 420 },
+        { category: 'interior', title: '楼梯设计', file: 'imgs/interior/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_136.png', count: 490 },
+        { category: 'lifestyle', title: '花艺时光', file: 'imgs/lifestyle/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_131.png', count: 390 },
+        { category: 'ads', title: '户外广告', file: 'imgs/ads/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_4.png', count: 380 },
+        { category: 'lifestyle', title: '早餐桌', file: 'imgs/lifestyle/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_19.png', count: 350 },
+        { category: 'ads', title: '家居广告', file: 'imgs/ads/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_5.png', count: 340 },
+        { category: 'ads', title: '时尚广告', file: 'imgs/ads/1783387031394-1175ad76-08b7-4e33-bb17-6fc8791128ff_21.png', count: 310 }
+      ];
+
+      cloudData.sort(function (a, b) { return b.count - a.count; });
+
+      const minCount = cloudData[cloudData.length - 1].count;
+      const maxCount = cloudData[0].count;
+
+      function computeSize(count) {
+        const ratio = (count - minCount) / (maxCount - minCount);
+        const width = Math.round(84 + ratio * 96);
+        return { width: width, height: Math.round(width * 0.75) };
+      }
+
+      const items = cloudData.map(function (item) {
+        const catName = categoryNames[item.category] || item.category;
+        const size = computeSize(item.count);
+        const el = document.createElement('div');
+        el.className = 'insight-dashboard__cloud-item';
+        el.style.width = size.width + 'px';
+        el.style.height = size.height + 'px';
+        el.setAttribute('data-title', item.title);
+        el.setAttribute('data-count', item.count);
+        el.setAttribute('data-cat', catName);
+        el.innerHTML = '<img src="' + item.file + '" alt="' + item.title + '" loading="lazy">' +
+          '<div class="insight-dashboard__cloud-overlay">' +
+            '<span class="insight-dashboard__cloud-title">' + item.title + '</span>' +
+            '<span class="insight-dashboard__cloud-count">' + item.count.toLocaleString() + ' 次 · ' + catName + '</span>' +
+          '</div>';
+        return { el: el, width: size.width, height: size.height, count: item.count };
+      });
+
+      // 螺旋布局算法（图片词云）
+      function layoutCloud() {
+        container.innerHTML = '';
+        const minHeight = parseFloat(getComputedStyle(container).minHeight) || 540;
+        const workingHeight = Math.max(minHeight * 1.3, 540);
+        container.style.height = workingHeight + 'px';
+        const placed = [];
+        const centerX = container.clientWidth / 2;
+        const centerY = workingHeight / 2;
+        const maxRadius = Math.max(centerX, centerY) + 280;
+
+        items.forEach(function (item, idx) {
+          let angle = idx * 0.8; // 起始角度错开，避免堆叠
+          let radius = 0;
+          let x = centerX - item.width / 2;
+          let y = centerY - item.height / 2;
+          let placedItem = null;
+          const padding = 8;
+
+          const containerW = container.clientWidth;
+          const containerH = container.clientHeight || 540;
+
+          while (radius <= maxRadius) {
+            let collision = false;
+            if (x < padding || x + item.width > containerW - padding ||
+                y < padding || y + item.height > containerH - padding) {
+              collision = true;
+            } else {
+              for (let i = 0; i < placed.length; i++) {
+                const p = placed[i];
+                if (!(x + item.width + padding < p.x || x > p.x + p.width + padding ||
+                      y + item.height + padding < p.y || y > p.y + p.height + padding)) {
+                  collision = true;
+                  break;
+                }
+              }
+            }
+
+            if (!collision) {
+              placedItem = { x: x, y: y, width: item.width, height: item.height };
+              break;
+            }
+
+            angle += 0.25;
+            radius += 0.35 + (item.width / 320); // 大图步进稍大，避免拥挤
+            x = centerX + radius * Math.cos(angle) - item.width / 2;
+            y = centerY + radius * Math.sin(angle) * 0.8 - item.height / 2;
+          }
+
+          if (!placedItem) {
+            placedItem = { x: centerX - item.width / 2, y: centerY - item.height / 2 };
+          }
+
+          item.el.style.left = placedItem.x + 'px';
+          item.el.style.top = placedItem.y + 'px';
+          item.el.style.opacity = '0';
+          item.el.style.transform = 'scale(0.92)';
+          container.appendChild(item.el);
+          placed.push(placedItem);
+
+          // 错开入场动画
+          window.setTimeout(function () {
+            item.el.style.opacity = '1';
+            item.el.style.transform = 'scale(1)';
+          }, Math.min(idx * 30, 800));
+        });
+
+        // 确保所有图片在可视区域内，并调整容器高度
+        let minX = Infinity, minY = Infinity, maxBottom = 0;
+        placed.forEach(function (p) {
+          minX = Math.min(minX, p.x);
+          minY = Math.min(minY, p.y);
+          maxBottom = Math.max(maxBottom, p.y + p.height);
+        });
+
+        const shiftX = minX < 8 ? -minX + 12 : 0;
+        const shiftY = minY < 8 ? -minY + 12 : 0;
+        if (shiftX || shiftY) {
+          placed.forEach(function (p, index) {
+            p.x += shiftX;
+            p.y += shiftY;
+            items[index].el.style.left = p.x + 'px';
+            items[index].el.style.top = p.y + 'px';
+          });
+          maxBottom += shiftY;
+        }
+
+        container.style.height = Math.max(maxBottom + 24, workingHeight) + 'px';
+      }
+
+      function getItem(el) {
+        while (el && el !== container) {
+          if (el.classList && el.classList.contains('insight-dashboard__cloud-item')) return el;
+          el = el.parentNode;
+        }
+        return null;
+      }
+
+      function activate(item, e) {
+        container.querySelectorAll('.insight-dashboard__cloud-item').forEach(function (i) { i.classList.remove('active'); });
+        item.classList.add('active');
+        const title = item.getAttribute('data-title');
+        const count = parseInt(item.getAttribute('data-count'), 10).toLocaleString();
+        const cat = item.getAttribute('data-cat');
+        if (detail) {
+          detail.innerHTML = '<strong>' + title + '</strong>（' + cat + '）累计 <strong>' + count + '</strong> 次浏览，是最受关注的内容之一。';
+          detail.classList.add('is-active');
+        }
+        if (e && window.iosTooltip) {
+          window.iosTooltip.show(title, count + ' 次 · ' + cat, e.clientX, e.clientY);
+        }
+      }
+
+      // 为每个图片项绑定事件，确保在项之间移动时也能触发
+      items.forEach(function (item) {
+        item.el.addEventListener('mouseenter', function (e) { activate(item.el, e); });
+        item.el.addEventListener('mousemove', function (e) {
+          if (window.iosTooltip) window.iosTooltip.move(e.clientX, e.clientY);
+        });
+        item.el.addEventListener('mouseleave', function () {
+          item.el.classList.remove('active');
+          if (window.iosTooltip) window.iosTooltip.hide();
+        });
+        item.el.addEventListener('click', function (e) { activate(item.el, e); });
+      });
+
+      layoutCloud();
+      window.addEventListener('resize', function () {
+        window.requestAnimationFrame(layoutCloud);
+      });
+    })();
+
+    // 模块5：用户偏好雷达图交互
+    (function () {
+      const radar = document.querySelector('.insight-dashboard__radar svg');
+      if (!radar) return;
+
+      const shape = radar.querySelector('.insight-dashboard__radar-shape');
+      const labels = Array.from(radar.querySelectorAll('.insight-dashboard__radar-label'));
+      const circles = Array.from(radar.querySelectorAll('circle'));
+      const gridGroup = radar.querySelector('.insight-dashboard__radar-grid');
+
+      // 创建中心到各顶点的轴线，用于高亮
+      const axisLines = [];
+      const axisGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      axisGroup.setAttribute('class', 'insight-dashboard__radar-axis-group');
+      radar.insertBefore(axisGroup, shape);
+
+      const center = { x: 150, y: 150 };
+      circles.forEach(function (circle) {
+        const cx = parseFloat(circle.getAttribute('cx'));
+        const cy = parseFloat(circle.getAttribute('cy'));
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', center.x);
+        line.setAttribute('y1', center.y);
+        line.setAttribute('x2', cx);
+        line.setAttribute('y2', cy);
+        line.setAttribute('class', 'insight-dashboard__radar-axis');
+        axisGroup.appendChild(line);
+        axisLines.push(line);
+      });
+
+      function clearActive() {
+        circles.forEach(function (c) {
+          c.setAttribute('r', '3');
+          c.removeAttribute('stroke');
+          c.removeAttribute('stroke-width');
+          c.classList.remove('active');
+        });
+        labels.forEach(function (l) { l.classList.remove('active'); });
+        axisLines.forEach(function (l) { l.classList.remove('active'); });
+        if (shape) shape.classList.remove('active');
+      }
+
+      labels.forEach(function (label, index) {
+        const circle = circles[index];
+        const axisLine = axisLines[index];
+        if (!circle) return;
+
+        const text = label.textContent.trim();
+        const match = text.match(/^(.+?)\s+(\d+)$/);
+        const name = match ? match[1] : text;
+        const score = match ? match[2] : '';
+
+        function show(e) {
+          clearActive();
+          circle.setAttribute('r', '7');
+          circle.setAttribute('stroke', '#fff');
+          circle.setAttribute('stroke-width', '2.5');
+          circle.classList.add('active');
+          label.classList.add('active');
+          if (axisLine) axisLine.classList.add('active');
+          if (shape) shape.classList.add('active');
+          if (window.iosTooltip) {
+            window.iosTooltip.show(name, '评分 ' + score, e.clientX, e.clientY);
+          }
+        }
+
+        function hide() {
+          clearActive();
+          if (window.iosTooltip) window.iosTooltip.hide();
+        }
+
+        function move(e) {
+          if (window.iosTooltip) window.iosTooltip.move(e.clientX, e.clientY);
+        }
+
+        label.addEventListener('mouseenter', show);
+        label.addEventListener('mousemove', move);
+        label.addEventListener('mouseleave', hide);
+        label.addEventListener('click', show);
+
+        circle.addEventListener('mouseenter', show);
+        circle.addEventListener('mousemove', move);
+        circle.addEventListener('mouseleave', hide);
+        circle.addEventListener('click', show);
+      });
+
+      // 悬停多边形整体也有轻微反馈
+      if (shape) {
+        shape.addEventListener('mouseenter', function (e) {
+          shape.classList.add('active');
+          if (window.iosTooltip) {
+            window.iosTooltip.show('用户风格偏好', '室内设计最受青睐，生活方式关注度最低', e.clientX, e.clientY);
+          }
+        });
+        shape.addEventListener('mousemove', function (e) {
+          if (window.iosTooltip) window.iosTooltip.move(e.clientX, e.clientY);
+        });
+        shape.addEventListener('mouseleave', function () {
+          shape.classList.remove('active');
+          if (window.iosTooltip) window.iosTooltip.hide();
+        });
+      }
+    })();
+
+    // 模块8：AI 数据洞察
+    (function () {
+      const btn = document.getElementById('insight-ai-btn');
+      const output = document.getElementById('insight-ai-output');
+      if (!btn || !output) return;
+
+      function buildPrompt() {
+        const pageInterest = [
+          { name: 'Works', percent: 45, count: 5661 },
+          { name: 'Data Service', percent: 22, count: 2768 },
+          { name: 'Contact', percent: 18, count: 2264 },
+          { name: 'News', percent: 15, count: 1887 }
+        ];
+        const hotContent = [
+          { title: '现代客厅设计', count: 1240 },
+          { title: '海滨别墅外观', count: 980 },
+          { title: '极简餐厅空间', count: 756 },
+          { title: '复古家具单品', count: 542 },
+          { title: '庭院生活方式', count: 418 }
+        ];
+        const funnel = [
+          { step: '进入网站', count: 12580 },
+          { step: '浏览图片', count: 9435 },
+          { step: '滚动阅读', count: 6290 },
+          { step: '查看详情', count: 3145 },
+          { step: '提交联系', count: 629 },
+          { step: '提交订单', count: 20 }
+        ];
+        const radar = [
+          { name: '室内设计', score: 92 },
+          { name: '建筑', score: 78 },
+          { name: '家具', score: 65 },
+          { name: '生活方式', score: 45 },
+          { name: '广告灵感', score: 55 }
+        ];
+        const cities = [
+          { name: '纽约', count: 1240 },
+          { name: '伦敦', count: 890 },
+          { name: '东京', count: 756 },
+          { name: '上海', count: 542 },
+          { name: '悉尼', count: 418 }
+        ];
+        return '请根据以下 Architectural Digest USA 杂志展示网站的数据，给出一段简短、有洞察力的中文分析（200-400字）。\n\n' +
+          '数据概览：\n' +
+          '- 今日访问：1,247 人，平均停留 2\'34"，互动率 68.3%。\n' +
+          '- 页面兴趣分布：' + pageInterest.map(function (p) { return p.name + ' ' + p.percent + '%（' + p.count + ' 次）'; }).join('、') + '。\n' +
+          '- 热门内容：' + hotContent.map(function (c) { return c.title + ' ' + c.count + ' 次'; }).join('、') + '。\n' +
+          '- 转化漏斗：' + funnel.map(function (f) { return f.step + ' ' + f.count + ' 人'; }).join(' → ') + '。\n' +
+          '- 风格偏好：' + radar.map(function (r) { return r.name + ' ' + r.score + ' 分'; }).join('、') + '。\n' +
+          '- 地域分布：' + cities.map(function (c) { return c.name + ' ' + c.count + ' 次'; }).join('、') + '。\n\n' +
+          '请从内容策略、用户地域、转化路径三个角度给出可落地的建议。';
+      }
+
+      function getSimulatedAnalysis() {
+        return '基于当前演示数据，可从以下三方面优化：\n\n' +
+          '1. 内容策略：室内设计（92分）与建筑（78分）是最受关注的品类，建议在首页和 杂志橱窗 页面继续强化高质量的室内与建筑案例；生活方式（45分）与广告灵感（55分）关注度相对较低，可通过专题策划、场景化内容或跨界合作提升吸引力。\n\n' +
+          '2. 用户地域：纽约、伦敦、东京三城合计贡献约 60% 的访问，说明品牌在英语国家与东亚市场已有较高认知。可针对这些地区增加本地化内容（如当地设计师访谈、区域活动），同时在上海、悉尼等新兴市场加大推广投入。\n\n' +
+          '3. 转化路径：从 12,580 人访问到仅 20 人提交订单，整体转化率极低。建议在详情页增设更明显的联系入口、案例集下载或订阅引导，并简化联系表单，降低用户流失。';
+      }
+
+      async function callLocalAI(prompt, apiKey, model) {
+        const response = await fetch('/api/ai-analysis', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt: prompt, apiKey: apiKey, model: model })
+        });
+        if (!response.ok) {
+          const err = await response.json().catch(function () { return {}; });
+          throw new Error(err.error || 'AI 服务请求失败');
+        }
+        return await response.json();
+      }
+
+      btn.addEventListener('click', async function () {
+        output.textContent = '正在分析，请稍候...';
+        btn.disabled = true;
+
+        const prompt = buildPrompt();
+        const apiKey = document.getElementById('ai-api-key').value.trim();
+        const model = document.getElementById('ai-model').value.trim() || 'doubao-lite-4k';
+
+        try {
+          if (window.location.protocol === 'file:') {
+            output.textContent = '当前通过 file 协议打开页面，无法调用本地 AI 代理。已为您生成模拟分析：\n\n' + getSimulatedAnalysis();
+            return;
+          }
+
+          const data = await callLocalAI(prompt, apiKey, model);
+          if (data.simulated || !data.content) {
+            output.textContent = (data.simulated ? '未配置豆包 API Key，已生成模拟分析：\n\n' : '') + getSimulatedAnalysis();
+          } else {
+            output.textContent = data.content;
+          }
+        } catch (err) {
+          output.textContent = 'AI 分析失败：' + err.message + '\n\n已切换为模拟分析：\n\n' + getSimulatedAnalysis();
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
