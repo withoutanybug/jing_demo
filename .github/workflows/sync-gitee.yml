@@ -1,0 +1,28 @@
+name: Sync GitHub to Gitee & Deploy Gitee Pages
+# 推送main分支自动触发
+on:
+  push:
+    branches: [ main ]
+  # 支持手动点按钮同步
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      # 拉取GitHub全部代码
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 同步代码到Gitee
+      - name: Mirror to Gitee
+        uses: wearerequired/git-mirror-action@v1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
+        with:
+          # 替换为你的GitHub仓库SSH地址
+          source-repo: git@github.com:withoutanybug/jing_demo.git
+          # 替换为你的Gitee仓库SSH地址
+          destination-repo: git@shturl.cc:luckyLUJJ/jing_demo.git
